@@ -2,6 +2,7 @@
 
 set -e
 
+export S3_BUCKET=${S3_BUCKET}
 # Check and set missing environment vars
 : ${S3_BUCKET:?"S3_BUCKET env variable is required"}
 if [[ -z ${S3_KEY_PREFIX} ]]; then
@@ -18,13 +19,26 @@ export DATABASE_HOST=${DATABASE_HOST:-localhost}
 export DATABASE_PORT=${DATABASE_PORT:-8088}
 export DATABASE_META_DIR=${DATABASE_META_DIR:-/var/lib/influxdb/meta}
 export DATABASE_DATA_DIR=${DATABASE_DATA_DIR:-/var/lib/influxdb/data}
+export CRON=${CRON:-"* * * * *"}
 export DATETIME=$(date "+%Y%m%d%H%M%S")
 
 # Add this script to the crontab and start crond
-cron() {
+startcron() {
+  echo "export S3_BUCKET=$S3_BUCKET" >> $HOME/.profile
   echo "Starting backup cron job with frequency '$1'"
-  echo "$1 $0 backup" > /var/spool/cron/crontabs/root
-  crond -f
+
+  echo "$1 . $HOME/.profile; $0 backup >> /var/log/cron.log 2>&1" > /etc/cron.d/influxdbbackup
+
+  cat /etc/cron.d/influxdbbackup
+
+  # Apply cron job
+  crontab /etc/cron.d/influxdbbackup
+
+  # Create the log file to be able to run tail
+  touch /var/log/cron.log
+
+  # cat /var/spool/cron/crontabs/root
+  cron && tail -f /var/log/cron.log
 }
 
 # Dump the database to a file and push it to S3
@@ -107,8 +121,8 @@ restore() {
 
 # Handle command line arguments
 case "$1" in
-  "cron")
-    cron "$2"
+  "startcron")
+    startcron "$CRON"
     ;;
   "backup")
     backup
@@ -118,5 +132,5 @@ case "$1" in
     ;;
   *)
     echo "Invalid command '$@'"
-    echo "Usage: $0 {backup|restore|cron <pattern>}"
+    echo "Usage: $0 {backup|restore|startcron}"
 esac
