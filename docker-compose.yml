@@ -1,13 +1,16 @@
 
-version: '3.3'
-
 services:
+  influxdb:
+    image: influxdb:latest
+    environment:
+      INFLUXDB_DB: mydb
+      INFLUXDB_BIND_ADDRESS: 0.0.0.0:8088
   influxdbs3backup:
     build:
       context: .
     environment:
-      DATABASE: mydatabase
-      DATABASE_HOST: localhost
+      DATABASE: mydb
+      DATABASE_HOST: influxdb
       S3_BUCKET: mybackupbucket
       AWS_ACCESS_KEY_ID: AKIAIOSFODNN7EXAMPLE
       AWS_SECRET_ACCESS_KEY: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY

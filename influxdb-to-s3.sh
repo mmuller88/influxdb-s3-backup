@@ -25,6 +25,13 @@ export DATETIME=$(date "+%Y%m%d%H%M%S")
 # Add this script to the crontab and start crond
 startcron() {
   echo "export S3_BUCKET=$S3_BUCKET" >> $HOME/.profile
+  echo "export S3_KEY_PREFIX=$S3_KEY_PREFIX" >> $HOME/.profile
+  echo "export DATABASE_HOST=$DATABASE_HOST" >> $HOME/.profile
+  echo "export DATABASE=$DATABASE" >> $HOME/.profile
+  echo "export DATABASE_PORT=$DATABASE_PORT" >> $HOME/.profile
+  echo "export BACKUP_PATH=$BACKUP_PATH" >> $HOME/.profile
+  echo "export BACKUP_ARCHIVE_PATH=$BACKUP_ARCHIVE_PATH" >> $HOME/.profile
+  echo "export DATETIME=$DATETIME" >> $HOME/.profile
   echo "Starting backup cron job with frequency '$1'"
 
   echo "$1 . $HOME/.profile; $0 backup >> /var/log/cron.log 2>&1" > /etc/cron.d/influxdbbackup
@@ -49,7 +56,7 @@ backup() {
     rm -rf $BACKUP_PATH
   fi
   mkdir -p $BACKUP_PATH
-  influxd backup -database $DATABASE -host $DATABASE_HOST:$DATABASE_PORT $BACKUP_PATH
+  influxd backup -portable -database $DATABASE -host $DATABASE_HOST:$DATABASE_PORT $BACKUP_PATH
   if [ $? -ne 0 ]; then
     echo "Failed to backup $DATABASE to $BACKUP_PATH"
     exit 1
