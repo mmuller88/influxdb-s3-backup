@@ -3,7 +3,7 @@ name: push-docker
 on:
   push:
     tags:
-    - '*'
+      - "*"
   workflow_dispatch: {}
 jobs:
   publish_docker_hub:

@@ -38,9 +38,12 @@ dockerPush.addJobs({
 })
 
 dockerPush.on({
-  release: {
-    types: ['published'],
+  push: {
+    tags: ['*'],
   },
+  // release: {
+  //   types: ['published'],
+  // },
   workflow_dispatch: {},
 })
 
