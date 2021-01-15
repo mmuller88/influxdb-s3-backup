@@ -20,6 +20,10 @@ dockerPush.addJobs({
     },
     'steps': [
       {
+        name: 'Check out the repo',
+        uses: 'actions/checkout@v2',
+      },
+      {
         name: 'Push to Docker Hub',
         uses: 'docker/build-push-action@v1',
         with: {
