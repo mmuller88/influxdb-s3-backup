@@ -38,6 +38,5 @@ yarn-error.log*
 !/.projenrc.js
 !/.versionrc.json
 !/LICENSE
-!/docker-compose.yml
 !/package.json
 !version.json
