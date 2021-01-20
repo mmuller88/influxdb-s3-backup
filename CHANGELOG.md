@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.6...v0.0.7) (2021-01-20)
+
+
+### Bug Fixes
+
+* remove cron in docker compose ([3f2d959](https://github.com/mmuller88/influxdb-s3-backup/commit/3f2d9592a631f48f80e7a8a3ac8fcd74025d8b6c))
+
 ### [0.0.6](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.5...v0.0.6) (2021-01-18)
 
 
