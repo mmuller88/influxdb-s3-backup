@@ -51,7 +51,7 @@ dockerPush.addJobs({
         with: {
           context: '.',
           file: './Dockerfile',
-          platforms: 'linux/amd64,linux/arm64,linux/386',
+          platforms: 'linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x',
           push: true,
           tags: 'damadden88/influxdb-s3-backup:latest'
         }
