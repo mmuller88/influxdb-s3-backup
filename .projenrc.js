@@ -30,15 +30,42 @@ dockerPush.addJobs({
         uses: 'actions/checkout@v2',
       },
       {
-        name: 'Push to Docker Hub',
-        uses: 'docker/build-push-action@v1',
-        with: {
+        name: 'Set up QEMU',
+        uses: 'docker/setup-qemu-action@v1',
+      },
+      {
+        name: 'Set up Docker Buildx',
+        uses: 'docker/setup-buildx-action@v1',
+      },
+      {
+        name: 'Login to DockerHub',
+        uses: 'docker/login-action@v1',
+        with:{
           username: '${{ secrets.DOCKER_USERNAME }}',
           password: '${{ secrets.DOCKER_PASSWORD }}',
-          repository: 'damadden88/influxdb-s3-backup',
-          tag_with_ref: true,
-        },
+        }
       },
+      {
+        name: 'Build and push',
+        uses: 'docker/build-push-action@v2',
+        with: {
+          context: '.',
+          file: './Dockerfile',
+          platforms: 'linux/amd64,linux/arm64,linux/386',
+          push: true,
+          tags: 'damadden88/influxdb-s3-backup:latest'
+        }
+      },
+      // {
+      //   name: 'Push to Docker Hub',
+      //   uses: 'docker/build-push-action@v2',
+      //   with: {
+      //     username: '${{ secrets.DOCKER_USERNAME }}',
+      //     password: '${{ secrets.DOCKER_PASSWORD }}',
+      //     repository: 'damadden88/influxdb-s3-backup',
+      //     tag_with_ref: true,
+      //   },
+      // },
     ],
   }
 })
