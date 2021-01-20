@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.9...v0.0.10) (2021-01-20)
+
+
+### Bug Fixes
+
+* add arm docker push ([11c92fd](https://github.com/mmuller88/influxdb-s3-backup/commit/11c92fd8fea64ce911837b7d54971d09723be605))
+
 ### [0.0.9](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.8...v0.0.9) (2021-01-20)
 
 
