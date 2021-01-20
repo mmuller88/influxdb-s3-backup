@@ -5,6 +5,8 @@ set -e
 export S3_BUCKET=${S3_BUCKET}
 # Check and set missing environment vars
 : ${S3_BUCKET:?"S3_BUCKET env variable is required"}
+: ${AWS_SECRET_ACCESS_KEY:?"AWS_SECRET_ACCESS_KEY env variable is required"}
+: ${AWS_ACCESS_KEY_ID:?"AWS_ACCESS_KEY_ID env variable is required"}
 if [[ -z ${S3_KEY_PREFIX} ]]; then
   export S3_KEY_PREFIX=""
 else
@@ -32,6 +34,9 @@ startcron() {
   echo "export BACKUP_PATH=$BACKUP_PATH" >> $HOME/.profile
   echo "export BACKUP_ARCHIVE_PATH=$BACKUP_ARCHIVE_PATH" >> $HOME/.profile
   echo "export DATETIME=$DATETIME" >> $HOME/.profile
+  echo "export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION" >> $HOME/.profile
+  echo "export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID" >> $HOME/.profile
+  echo "export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY" >> $HOME/.profile
   echo "Starting backup cron job with frequency '$1'"
 
   echo "$1 . $HOME/.profile; $0 backup >> /var/log/cron.log 2>&1" > /etc/cron.d/influxdbbackup

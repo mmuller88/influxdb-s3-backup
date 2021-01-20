@@ -85,7 +85,7 @@ docker run \
     -e AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE \
     -e AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY \
     -e AWS_DEFAULT_REGION=us-west-2 \
-    jacobtomlinson/influxdb-to-s3:latest \
+    damadden88/influxdb-to-s3:latest \
     restore
 ```
 
