@@ -1,10 +1,13 @@
+![Release](https://github.com/mmuller88/influxdb-s3-backup/workflows/Release/badge.svg)
+![push-docker](https://github.com/mmuller88/influxdb-s3-backup/workflows/push-docker/badge.svg)
+
 # influxdb-s3-backup
 
 A docker container for backing up your InfluxDB to AWS S3. It works on a Raspberry Pi as well.
 
-# Example
+# Docker Hub
 
-    ...
+Released to [Docker Hub](https://hub.docker.com/repository/docker/damadden88/influxdb-s3-backup). Supported platforms: linux/amd64,linux/arm64
 
 # Usage
 

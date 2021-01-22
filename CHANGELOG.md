@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.14...v0.0.15) (2021-01-22)
+
+
+### Features
+
+* mention docker hub ([65d60d0](https://github.com/mmuller88/influxdb-s3-backup/commit/65d60d0235c5b77d5978218cd8511e0550c726de))
+
+### [0.0.14](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.13...v0.0.14) (2021-01-22)
+
+
+### Features
+
+* add badges + mention docker hub ([f0920f2](https://github.com/mmuller88/influxdb-s3-backup/commit/f0920f2228df58a2c5c60edf854e8a0fe2d24f68))
+
+### [0.0.13](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.12...v0.0.13) (2021-01-20)
+
+
+### Bug Fixes
+
+* add arm docker push ([07a849a](https://github.com/mmuller88/influxdb-s3-backup/commit/07a849afb367afbf577478554b2cfebb0ec36865))
+
 ### [0.0.12](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.11...v0.0.12) (2021-01-20)
 
 
