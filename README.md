@@ -23,7 +23,7 @@ docker run \
 
 or if you just start your docker compose deployment
 
-## Custom cron timing
+## Run Docker Container
 
 ```shell
 docker run \
@@ -33,9 +33,27 @@ docker run \
     -e AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE \
     -e AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY \
     -e AWS_DEFAULT_REGION=us-west-2 \
-    -e CRON="* * * * *" \
-    jacobtomlinson/influxdb-to-s3:latest
+    damadden88/influxdb-to-s3:latest
 ```
+
+## Docker Compose deployment
+
+### Preparation
+
+You need to set you AWS Credentials before like:
+
+```
+export AWS_ACCESS_KEY_ID=AKIAxx
+export AWS_SECRET_ACCESS_KEY=7PBRxx
+```
+
+And than run:
+
+```
+docker-compose up -d --build
+```
+
+### Example
 
 ```yaml
 version: '3.3'

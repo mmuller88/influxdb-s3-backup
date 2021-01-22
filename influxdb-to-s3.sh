@@ -21,7 +21,8 @@ export DATABASE_HOST=${DATABASE_HOST:-localhost}
 export DATABASE_PORT=${DATABASE_PORT:-8088}
 export DATABASE_META_DIR=${DATABASE_META_DIR:-/var/lib/influxdb/meta}
 export DATABASE_DATA_DIR=${DATABASE_DATA_DIR:-/var/lib/influxdb/data}
-export CRON=${CRON:-"0 1 * * *"}
+# export CRON=${CRON:-"0 1 * * *"}
+export CRON=${CRON:-"* * * * *"}
 export DATETIME=$(date "+%Y%m%d%H%M%S")
 
 # Add this script to the crontab and start crond
