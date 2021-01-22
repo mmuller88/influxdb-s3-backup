@@ -7,7 +7,7 @@ A docker container for backing up your InfluxDB to AWS S3. It works on a Raspber
 
 # Docker Hub
 
-Released nach [Docker Hub](https://hub.docker.com/repository/docker/damadden88/influxdb-s3-backup)
+Released to [Docker Hub](https://hub.docker.com/repository/docker/damadden88/influxdb-s3-backup). Supported platforms: linux/amd64,linux/arm64
 
 # Usage
 
