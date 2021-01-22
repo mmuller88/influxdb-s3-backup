@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.16](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.15...v0.0.16) (2021-01-22)
+
+
+### Bug Fixes
+
+* add Readme stuff ([8db0548](https://github.com/mmuller88/influxdb-s3-backup/commit/8db05486bbfb78bb8c2c42e8141f970c34017cce))
+
 ### [0.0.15](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.14...v0.0.15) (2021-01-22)
 
 
