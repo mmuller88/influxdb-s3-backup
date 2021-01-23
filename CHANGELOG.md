@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.16...v0.0.17) (2021-01-23)
+
+
+### Bug Fixes
+
+* use docker copmose projen template ([031ead4](https://github.com/mmuller88/influxdb-s3-backup/commit/031ead4aa1886199fa04af0af54a310edec85465))
+
 ### [0.0.16](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.15...v0.0.16) (2021-01-22)
 
 
