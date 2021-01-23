@@ -80,31 +80,31 @@ dockerPush.on({
   workflow_dispatch: {},
 })
 
-// new DockerCompose(project, {
-//   version: '3.3',
-//   services: {
-//     influxdb:{
-//       // container_na me: influxdb,
-//       image: "influxdb:latest",
-//       environment: {
-//         INFLUXDB_DB: 'mydb',
-//         INFLUXDB_BIND_ADDRESS: '0.0.0.0:8088',
-//       },
-//     },
-//     influxdbs3backup: {
-//       imageBuild: {
-//         context: '.',
-//       },
-//       environment: {
-//         DATABASE: 'mydb',
-//         DATABASE_HOST: 'influxdb',
-//         S3_BUCKET: 'mybackupbucket',
-//         AWS_ACCESS_KEY_ID: 'AKIAIOSFODNN7EXAMPLE',
-//         AWS_SECRET_ACCESS_KEY: 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
-//         AWS_DEFAULT_REGION: 'us-west-2',
-//       },
-//     },
-//   },
-// });
+new DockerCompose(project, {
+  version: '3.3',
+  services: {
+    influxdb:{
+      // container_na me: influxdb,
+      image: "influxdb:latest",
+      environment: {
+        INFLUXDB_DB: 'mydb',
+        INFLUXDB_BIND_ADDRESS: '0.0.0.0:8088',
+      },
+    },
+    influxdbs3backup: {
+      imageBuild: {
+        context: '.',
+      },
+      environment: {
+        DATABASE: 'mydb',
+        DATABASE_HOST: 'influxdb',
+        S3_BUCKET: 'rasp4backup',
+        // AWS_ACCESS_KEY_ID: '',
+        // AWS_SECRET_ACCESS_KEY: '',
+        AWS_DEFAULT_REGION: 'us-west-2',
+      },
+    },
+  },
+});
 
 project.synth();

@@ -1,5 +1,5 @@
+version: '3.3'
 
-version: "3.3"
 services:
   influxdb:
     image: influxdb:latest
@@ -10,7 +10,9 @@ services:
     build:
       context: .
     environment:
-      DATABASE: mydb
-      DATABASE_HOST: influxdb
-      S3_BUCKET: rasp4backup
-      AWS_DEFAULT_REGION: us-west-2
+      - DATABASE=mydb
+      - DATABASE_HOST=influxdb
+      - S3_BUCKET=rasp4backup
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_DEFAULT_REGION=eu-central-1
