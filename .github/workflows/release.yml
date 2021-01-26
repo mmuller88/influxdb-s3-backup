@@ -64,4 +64,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: damadden88/influxdb-s3-backup:undefined
+          tags: damadden88/influxdb-s3-backup:latest
