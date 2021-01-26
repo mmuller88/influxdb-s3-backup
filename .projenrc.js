@@ -11,7 +11,8 @@ const project = new NodeProject({
 // const release =project.github.tasks.tryFind('release');
 // release.exec('hihi');
 
-const versionJSON = require('./version.json')
+// const versionJSON = require('./version.json')
+const versionJSON = 'latest';
 
 project.releaseWorkflow.addJobs({
   publish_docker_hub: {
