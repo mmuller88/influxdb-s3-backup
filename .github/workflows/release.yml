@@ -57,6 +57,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: getVersion
+        run: JSON=$(cat ./version.json),echo "::set-output
+          name=version::${JSON//'%'/'%25'}"
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -64,4 +67,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: damadden88/influxdb-s3-backup:latest
+          tags: damadden88/influxdb-s3-backup:${{fromJson(steps.getVersion.outputs.version).version}}
