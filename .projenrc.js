@@ -11,7 +11,8 @@ const project = new NodeProject({
 // const release =project.github.tasks.tryFind('release');
 // release.exec('hihi');
 
-// project.addTask()
+const versionJSON = require('./version.json')
+
 project.releaseWorkflow.addJobs({
   publish_docker_hub: {
     needs: 'build',
@@ -50,7 +51,7 @@ project.releaseWorkflow.addJobs({
           file: './Dockerfile',
           platforms: 'linux/amd64,linux/arm64',
           push: true,
-          tags: 'damadden88/influxdb-s3-backup:latest'
+          tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
         }
       },
       // {
