@@ -29,7 +29,7 @@ project.releaseWorkflow.addJobs({
         name: 'get_version',
         run: [
           'JSON=$(cat ./version.json)',
-          'echo "::set-output name=version::${JSON//\'%\'/\'%25\'}"',
+          'echo "::set-output name=${JSON//\'%\'/\'%25\'}"',
           // 'echo "::set-output name=version::${JSON}"',
           ].join('\n'),
       }
