@@ -16,6 +16,7 @@ const project = new NodeProject({
 project.releaseWorkflow.addJobs({
   get_version: {
     needs: 'build',
+    'runs-on': 'ubuntu-latest',
     outputs: { 
       matrix: '${{ steps.set-matrix.outputs.matrix }}'
     },
