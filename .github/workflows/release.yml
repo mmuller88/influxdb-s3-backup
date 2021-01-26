@@ -51,7 +51,7 @@ jobs:
       - name: get_version
         run: |-
           JSON=$(cat ./version.json)
-          echo "::set-output name=${JSON//'%'/'%25'}"
+          echo "::set-output name=matrix::{"version":"0.0.1"}"
   publish_docker_hub:
     needs: get_version
     runs-on: ubuntu-latest
