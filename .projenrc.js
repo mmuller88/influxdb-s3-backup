@@ -12,11 +12,7 @@ const project = new NodeProject({
 // release.exec('hihi');
 
 // project.addTask()
-
-// const dockerPush = project.github.addWorkflow('push-docker');
-const dockerPush = project.github.addWorkflow('push-docker');
-
-dockerPush.addJobs({
+project.releaseWorkflow.addJobs({
   publish_docker_hub: {
     // 'name': 'Release to NPM',
     // 'needs': this.releaseWorkflowJobId,
@@ -69,6 +65,63 @@ dockerPush.addJobs({
     ],
   }
 })
+
+// const dockerPush = project.github.addWorkflow('push-docker');
+const dockerPush = project.github.addWorkflow('push-docker');
+
+// dockerPush.addJobs({
+//   publish_docker_hub: {
+//     // 'name': 'Release to NPM',
+//     // 'needs': this.releaseWorkflowJobId,
+//     'runs-on': 'ubuntu-latest',
+//     env: {
+//       CI: "true",
+//     },
+//     'steps': [
+//       {
+//         name: 'Check out the repo',
+//         uses: 'actions/checkout@v2',
+//       },
+//       {
+//         name: 'Set up QEMU',
+//         uses: 'docker/setup-qemu-action@v1',
+//       },
+//       {
+//         name: 'Set up Docker Buildx',
+//         uses: 'docker/setup-buildx-action@v1',
+//       },
+//       {
+//         name: 'Login to DockerHub',
+//         uses: 'docker/login-action@v1',
+//         with:{
+//           username: '${{ secrets.DOCKER_USERNAME }}',
+//           password: '${{ secrets.DOCKER_PASSWORD }}',
+//         }
+//       },
+//       {
+//         name: 'Build and push',
+//         uses: 'docker/build-push-action@v2',
+//         with: {
+//           context: '.',
+//           file: './Dockerfile',
+//           platforms: 'linux/amd64,linux/arm64',
+//           push: true,
+//           tags: 'damadden88/influxdb-s3-backup:latest'
+//         }
+//       },
+//       // {
+//       //   name: 'Push to Docker Hub',
+//       //   uses: 'docker/build-push-action@v2',
+//       //   with: {
+//       //     username: '${{ secrets.DOCKER_USERNAME }}',
+//       //     password: '${{ secrets.DOCKER_PASSWORD }}',
+//       //     repository: 'damadden88/influxdb-s3-backup',
+//       //     tag_with_ref: true,
+//       //   },
+//       // },
+//     ],
+//   }
+// })
 
 dockerPush.on({
   push: {
