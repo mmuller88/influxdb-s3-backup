@@ -41,6 +41,7 @@ jobs:
           name: dist
           path: dist
   publish_docker_hub:
+    needs: build
     runs-on: ubuntu-latest
     env:
       CI: "true"

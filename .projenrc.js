@@ -14,6 +14,7 @@ const project = new NodeProject({
 // project.addTask()
 project.releaseWorkflow.addJobs({
   publish_docker_hub: {
+    needs: 'build',
     // 'name': 'Release to NPM',
     // 'needs': this.releaseWorkflowJobId,
     'runs-on': 'ubuntu-latest',
