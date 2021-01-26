@@ -43,6 +43,9 @@ project.releaseWorkflow.addJobs({
     env: {
       CI: "true",
     },
+    strategy: {
+      matrix: '${{fromJSON(needs.get_version.outputs.matrix)}}',
+    },
     'steps': [
       {
         name: 'Check out the repo',
@@ -73,7 +76,7 @@ project.releaseWorkflow.addJobs({
           platforms: 'linux/amd64,linux/arm64',
           push: true,
           // tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
-          tags: 'damadden88/influxdb-s3-backup:${{fromJson(needs.get_version.outputs.matrix).version}}'
+          tags: 'damadden88/influxdb-s3-backup:${{matrix.version}}'
         }
       },
       // {
