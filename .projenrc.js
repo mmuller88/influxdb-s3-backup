@@ -22,7 +22,11 @@ project.releaseWorkflow.addJobs({
     },
     'steps': [
       {
-        name: 'blub',
+        name: 'Check out the repo',
+        uses: 'actions/checkout@v2',
+      },
+      {
+        name: 'get_version',
         run: [
           'JSON=$(cat ./version.json)',
           'echo "::set-output name=version::${JSON//\'%\'/\'%25\'}"',
