@@ -44,7 +44,7 @@ project.releaseWorkflow.addJobs({
         }
       },
       {
-        name: "getVersion",
+        name: "get_version",
         run: [
           'JSON=$(cat ./version.json)',
           'echo "::set-output name=version::${JSON//\'%\'/\'%25\'}"',
@@ -59,7 +59,7 @@ project.releaseWorkflow.addJobs({
           platforms: 'linux/amd64,linux/arm64',
           push: true,
           // tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
-          tags: 'damadden88/influxdb-s3-backup:${{fromJson(steps.getVersion.outputs.version).version}}'
+          tags: 'damadden88/influxdb-s3-backup:${{fromJson(steps.get_version.outputs.version).version}}'
         }
       },
       // {
