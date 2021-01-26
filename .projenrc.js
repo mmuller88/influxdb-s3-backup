@@ -14,8 +14,24 @@ const project = new NodeProject({
 // const versionJSON = require('./version.json')
 
 project.releaseWorkflow.addJobs({
-  publish_docker_hub: {
+  get_version: {
     needs: 'build',
+    outputs: { 
+      matrix: '${{ steps.set-matrix.outputs.matrix }}'
+    },
+    'steps': [
+      {
+        name: 'blub',
+        run: [
+          'JSON=$(cat ./version.json)',
+          'echo "::set-output name=version::${JSON//\'%\'/\'%25\'}"',
+          // 'echo "::set-output name=version::${JSON}"',
+          ].join('\n'),
+      }
+    ],
+  },
+  publish_docker_hub: {
+    needs: 'get_version',
     // 'name': 'Release to NPM',
     // 'needs': this.releaseWorkflowJobId,
     'runs-on': 'ubuntu-latest',
@@ -44,14 +60,6 @@ project.releaseWorkflow.addJobs({
         }
       },
       {
-        name: "get_version",
-        run: [
-          'JSON=$(cat ./version.json)',
-          // 'echo "::set-output name=version::${JSON//\'%\'/\'%25\'}"',
-          'echo "::set-output name=version::${JSON}"',
-          ].join('\n'),
-      },
-      {
         name: 'Build and push',
         uses: 'docker/build-push-action@v2',
         with: {
@@ -60,7 +68,7 @@ project.releaseWorkflow.addJobs({
           platforms: 'linux/amd64,linux/arm64',
           push: true,
           // tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
-          tags: 'damadden88/influxdb-s3-backup:${{fromJson(steps.get_version.outputs.version).version}}'
+          tags: 'damadden88/influxdb-s3-backup:${{fromJson(needs.get_version.outputs.matrix).version}}'
         }
       },
       // {
