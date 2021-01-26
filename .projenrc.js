@@ -26,9 +26,9 @@ project.releaseWorkflow.addJobs({
         uses: 'actions/checkout@v2',
       },
       {
-        name: 'get_version',
+        name: 'set-matrix',
         run: [
-          'JSON=$(cat ./version.json)',
+          // 'JSON=$(cat ./version.json)',
           'echo "::set-output name=matrix::{\"version\":\"0.0.1\"}"',
           // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
           // 'echo "::set-output name=version::${JSON}"',
