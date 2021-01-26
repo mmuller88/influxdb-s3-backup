@@ -48,7 +48,7 @@ project.releaseWorkflow.addJobs({
         run: [
           'JSON=$(cat ./version.json)',
           'echo "::set-output name=version::${JSON//\'%\'/\'%25\'}"',
-          ].join()
+          ].join('\n'),
       },
       {
         name: 'Build and push',
