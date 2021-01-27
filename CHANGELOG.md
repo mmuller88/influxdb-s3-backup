@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.46](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.45...v0.0.46) (2021-01-27)
+
+
+### Features
+
+* use releaseworkflow for docker hub release ([90af6cc](https://github.com/mmuller88/influxdb-s3-backup/commit/90af6cc00e78b9fe56dbb7221dd45fa566ef7d36))
+
 ### [0.0.45](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.44...v0.0.45) (2021-01-27)
 
 
