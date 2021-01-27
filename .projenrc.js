@@ -52,7 +52,10 @@ project.releaseWorkflow.addJobs({
           file: './Dockerfile',
           platforms: 'linux/amd64,linux/arm64',
           push: true,
-          tags: 'damadden88/influxdb-s3-backup:${{ steps.get_version.outputs.dversion }}'
+          tags: [
+            'damadden88/influxdb-s3-backup:${{ steps.get_version.outputs.dversion }}',
+            'damadden88/influxdb-s3-backup:latest',
+          ]
         }
       },
     ],
