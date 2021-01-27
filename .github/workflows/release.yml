@@ -56,7 +56,7 @@ jobs:
     env:
       CI: "true"
     strategy:
-      matrix: ${{fromJSON(needs.getversion.outputs.matrix)}}
+      matrix: ${{fromJson(needs.getversion.outputs.matrix)}}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
