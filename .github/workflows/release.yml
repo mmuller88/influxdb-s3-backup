@@ -43,11 +43,10 @@ jobs:
   getversion:
     needs: build
     runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.setversion.outputs.version }}
     steps:
-      - name: setversion
-        run: echo "::set-output name=version::\"0.0.4\""
+      - id: setversion
+        name: setversion
+        run: echo "::set-output name=dversion::0.0.4
   publish_docker_hub:
     needs: getversion
     runs-on: ubuntu-latest
@@ -72,4 +71,5 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: damadden88/influxdb-s3-backup:${{ needs.getversion.outputs.version }}
+          tags: damadden88/influxdb-s3-backup:${{
+            needs.getversion.steps.setversion.outputs.dversion }}
