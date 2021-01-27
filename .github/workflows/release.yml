@@ -56,7 +56,9 @@ jobs:
     env:
       CI: "true"
     strategy:
-      matrix: 0.0.1
+      matrix:
+        version:
+          - 0.0.1
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
