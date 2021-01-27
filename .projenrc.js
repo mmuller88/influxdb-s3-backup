@@ -14,7 +14,7 @@ const project = new NodeProject({
 // const versionJSON = require('./version.json')
 
 project.releaseWorkflow.addJobs({
-  get_version: {
+  getversion: {
     needs: 'build',
     'runs-on': 'ubuntu-latest',
     outputs: { 
@@ -37,7 +37,7 @@ project.releaseWorkflow.addJobs({
     ],
   },
   publish_docker_hub: {
-    needs: 'get_version',
+    needs: 'getversion',
     // 'name': 'Release to NPM',
     // 'needs': this.releaseWorkflowJobId,
     'runs-on': 'ubuntu-latest',
@@ -45,7 +45,7 @@ project.releaseWorkflow.addJobs({
       CI: "true",
     },
     strategy: {
-      matrix: '${{fromJSON(needs.get_version.outputs.matrix)}}',
+      matrix: '${{fromJSON(needs.getversion.outputs.matrix)}}',
       // matrix: {
       //   version: ['0.0.1']
       // }
