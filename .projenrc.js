@@ -38,6 +38,7 @@ project.releaseWorkflow.addJobs({
       },
       {
         name: 'get_version',
+        id: 'get_version',
         run: [
           'DVERSION=$(jq .version version.json -r)',
           'echo "::set-output name=dversion::$DVERSION"',
