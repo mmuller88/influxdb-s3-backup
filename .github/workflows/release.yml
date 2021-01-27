@@ -44,7 +44,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     outputs:
-      version: ${{ steps.set-matrix.outputs.version }}
+      version: 0.0.3
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -55,7 +55,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: "true"
-      D_VERSION: 0.0.2
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -75,4 +74,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: damadden88/influxdb-s3-backup:${{ env.D_VERSION }}
+          tags: damadden88/influxdb-s3-backup:${{ needs.getversion.outputs.version }}
