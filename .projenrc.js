@@ -46,7 +46,7 @@ project.releaseWorkflow.addJobs({
     },
     strategy: {
       // matrix: '${{fromJson(needs.getversion.outputs.matrix)}}',
-      matrix: '${{fromJson(needs.getversion.outputs.matrix)}}',
+      matrix: '${{fromJSON(needs.getversion.outputs.matrix)}}',
       // matrix: {
       //   version: ['0.0.1']
       // }
