@@ -56,7 +56,7 @@ jobs:
     env:
       CI: "true"
     strategy:
-      matrix: ${{fromJSON({"version":"0.0.1"})}}
+      matrix: ${{fromJSON({\"version\":\"0.0.1\"})}}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
