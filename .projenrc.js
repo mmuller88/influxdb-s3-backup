@@ -19,23 +19,23 @@ project.releaseWorkflow.addJobs({
     'runs-on': 'ubuntu-latest',
     outputs: { 
       // matrix: '${{ steps.set-matrix.outputs.matrix }}'
-      // version: '${{ steps.set-matrix.outputs.version }}'
-      version: '0.0.3'
+      version: '${{ steps.setversion.outputs.version }}'
+      // version: '0.0.3'
     },
     'steps': [
+      // {
+      //   name: 'Check out the repo',
+      //   uses: 'actions/checkout@v2',
+      // },
       {
-        name: 'Check out the repo',
-        uses: 'actions/checkout@v2',
-      },
-      {
-        name: 'set-matrix',
-        run: [
+        name: 'setversion',
+        run: //[
           // 'JSON=$(cat ./version.json)',
           // 'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
-          'echo "::set-output name=version::0.0.2"',
+          'echo "::set-output name=version::0.0.4"'
           // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
           // 'echo "::set-output name=version::${JSON}"',
-          ].join('\n'),
+          //].join('\n'),
       }
     ],
   },
