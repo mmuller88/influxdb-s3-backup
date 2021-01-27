@@ -72,13 +72,14 @@ project.releaseWorkflow.addJobs({
       {
         id: 'setversion',
         name: 'setversion',
-        run: //[
+        run: [
           // 'JSON=$(cat ./version.json)',
           // 'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
-          'echo "::set-output name=dversion::0.0.4"'
+          'DVERSION=$(jq .version version.json)',
+          'echo "::set-output name=dversion::$DVERSION"',
           // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
           // 'echo "::set-output name=version::${JSON}"',
-          //].join('\n'),
+          ].join('\n'),
       },
       {
         name: 'Build and push',

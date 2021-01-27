@@ -59,7 +59,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       - id: setversion
         name: setversion
-        run: echo "::set-output name=dversion::0.0.4"
+        run: |-
+          DVERSION=$(jq .version version.json)
+          echo "::set-output name=dversion::$DVERSION"
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
