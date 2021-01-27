@@ -19,7 +19,8 @@ project.releaseWorkflow.addJobs({
     'runs-on': 'ubuntu-latest',
     outputs: { 
       // matrix: '${{ steps.set-matrix.outputs.matrix }}'
-      version: '${{ steps.set-matrix.outputs.version }}'
+      // version: '${{ steps.set-matrix.outputs.version }}'
+      version: '0.0.3'
     },
     'steps': [
       {
@@ -45,7 +46,7 @@ project.releaseWorkflow.addJobs({
     'runs-on': 'ubuntu-latest',
     env: {
       CI: "true",
-      D_VERSION: "0.0.2",
+      // D_VERSION: "0.0.2",
       // D_VERSION: '${{ needs.getversion.outputs.version }}',
     },
     // strategy: {
@@ -87,8 +88,8 @@ project.releaseWorkflow.addJobs({
           push: true,
           // tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
           // tags: 'damadden88/influxdb-s3-backup:${{matrix.version}}'
-          // tags: 'damadden88/influxdb-s3-backup:${{ needs.getversion.outputs.version }}'
-          tags: 'damadden88/influxdb-s3-backup:${{ env.D_VERSION }}'
+          tags: 'damadden88/influxdb-s3-backup:${{ needs.getversion.outputs.version }}'
+          // tags: 'damadden88/influxdb-s3-backup:${{ env.D_VERSION }}'
         }
       },
       // {
