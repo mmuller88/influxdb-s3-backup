@@ -40,13 +40,6 @@ jobs:
         with:
           name: dist
           path: dist
-  getversion:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - id: setversion
-        name: setversion
-        run: echo "::set-output name=dversion::0.0.4"
   publish_docker_hub:
     needs: getversion
     runs-on: ubuntu-latest
@@ -64,6 +57,9 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - id: setversion
+        name: setversion
+        run: echo "::set-output name=dversion::0.0.4"
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -71,5 +67,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: damadden88/influxdb-s3-backup:${{
-            needs.getversion.steps.setversion.outputs.dversion }}
+          tags: damadden88/influxdb-s3-backup:${{ steps.setversion.outputs.dversion }}

@@ -14,32 +14,22 @@ const project = new NodeProject({
 // const versionJSON = require('./version.json')
 
 project.releaseWorkflow.addJobs({
-  getversion: {
-    needs: 'build',
-    'runs-on': 'ubuntu-latest',
-    // outputs: { 
-    //   // matrix: '${{ steps.set-matrix.outputs.matrix }}'
-    //   version: '${{ steps.setversion.outputs.version }}'
-    //   // version: '0.0.3'
-    // },
-    'steps': [
-      // {
-      //   name: 'Check out the repo',
-      //   uses: 'actions/checkout@v2',
-      // },
-      {
-        id: 'setversion',
-        name: 'setversion',
-        run: //[
-          // 'JSON=$(cat ./version.json)',
-          // 'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
-          'echo "::set-output name=dversion::0.0.4"'
-          // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
-          // 'echo "::set-output name=version::${JSON}"',
-          //].join('\n'),
-      }
-    ],
-  },
+  // getversion: {
+  //   needs: 'build',
+  //   'runs-on': 'ubuntu-latest',
+  //   // outputs: { 
+  //   //   // matrix: '${{ steps.set-matrix.outputs.matrix }}'
+  //   //   version: '${{ steps.setversion.outputs.version }}'
+  //   //   // version: '0.0.3'
+  //   // },
+  //   'steps': [
+  //     // {
+  //     //   name: 'Check out the repo',
+  //     //   uses: 'actions/checkout@v2',
+  //     // },
+     
+  //   ],
+  // },
   publish_docker_hub: {
     needs: 'getversion',
     // 'name': 'Release to NPM',
@@ -80,6 +70,17 @@ project.releaseWorkflow.addJobs({
         }
       },
       {
+        id: 'setversion',
+        name: 'setversion',
+        run: //[
+          // 'JSON=$(cat ./version.json)',
+          // 'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
+          'echo "::set-output name=dversion::0.0.4"'
+          // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
+          // 'echo "::set-output name=version::${JSON}"',
+          //].join('\n'),
+      },
+      {
         name: 'Build and push',
         uses: 'docker/build-push-action@v2',
         with: {
@@ -89,7 +90,7 @@ project.releaseWorkflow.addJobs({
           push: true,
           // tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
           // tags: 'damadden88/influxdb-s3-backup:${{matrix.version}}'
-          tags: 'damadden88/influxdb-s3-backup:${{ needs.getversion.steps.setversion.outputs.dversion }}'
+          tags: 'damadden88/influxdb-s3-backup:${{ steps.setversion.outputs.dversion }}'
           // tags: 'damadden88/influxdb-s3-backup:${{ env.D_VERSION }}'
         }
       },
