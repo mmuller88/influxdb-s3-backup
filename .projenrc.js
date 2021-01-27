@@ -18,7 +18,8 @@ project.releaseWorkflow.addJobs({
     needs: 'build',
     'runs-on': 'ubuntu-latest',
     outputs: { 
-      matrix: '${{ steps.set-matrix.outputs.matrix }}'
+      // matrix: '${{ steps.set-matrix.outputs.matrix }}'
+      version: '${{ steps.set-matrix.outputs.version }}'
     },
     'steps': [
       {
@@ -30,7 +31,7 @@ project.releaseWorkflow.addJobs({
         run: [
           // 'JSON=$(cat ./version.json)',
           // 'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
-          'echo "::set-output name=matrix::{\\"version\\":\\"0.0.2\\"}"',
+          'echo "::set-output name=version::0.0.2',
           // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
           // 'echo "::set-output name=version::${JSON}"',
           ].join('\n'),
@@ -44,7 +45,7 @@ project.releaseWorkflow.addJobs({
     'runs-on': 'ubuntu-latest',
     env: {
       CI: "true",
-      VERSION: '${{fromJSON(needs.getversion.outputs.matrix)}}',
+      VERSION: '${{ needs.getversion.outputs.version }}',
     },
     // strategy: {
       // matrix: '${{fromJson(needs.getversion.outputs.matrix)}}',
