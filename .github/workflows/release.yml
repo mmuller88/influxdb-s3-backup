@@ -60,7 +60,7 @@ jobs:
       - id: setversion
         name: setversion
         run: |-
-          DVERSION=$(jq .version version.json)
+          DVERSION=$(jq .version version.json -r)
           echo "::set-output name=dversion::$DVERSION"
       - name: Build and push
         uses: docker/build-push-action@v2

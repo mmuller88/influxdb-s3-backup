@@ -75,7 +75,7 @@ project.releaseWorkflow.addJobs({
         run: [
           // 'JSON=$(cat ./version.json)',
           // 'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
-          'DVERSION=$(jq .version version.json)',
+          'DVERSION=$(jq .version version.json -r)',
           'echo "::set-output name=dversion::$DVERSION"',
           // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
           // 'echo "::set-output name=version::${JSON}"',
