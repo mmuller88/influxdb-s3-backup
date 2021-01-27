@@ -14,30 +14,30 @@ const project = new NodeProject({
 // const versionJSON = require('./version.json')
 
 project.releaseWorkflow.addJobs({
-  get_version: {
-    needs: 'build',
-    'runs-on': 'ubuntu-latest',
-    outputs: { 
-      matrix: '${{ steps.set-matrix.outputs.matrix }}'
-    },
-    'steps': [
-      {
-        name: 'Check out the repo',
-        uses: 'actions/checkout@v2',
-      },
-      {
-        name: 'set-matrix',
-        run: [
-          // 'JSON=$(cat ./version.json)',
-          'echo "::set-output name=matrix::{\\"version\\":\\"0.0.1\\"}"',
-          // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
-          // 'echo "::set-output name=version::${JSON}"',
-          ].join('\n'),
-      }
-    ],
-  },
+  // get_version: {
+  //   needs: 'build',
+  //   'runs-on': 'ubuntu-latest',
+  //   outputs: { 
+  //     matrix: '${{ steps.set-matrix.outputs.matrix }}'
+  //   },
+  //   'steps': [
+  //     {
+  //       name: 'Check out the repo',
+  //       uses: 'actions/checkout@v2',
+  //     },
+  //     {
+  //       name: 'set-matrix',
+  //       run: [
+  //         // 'JSON=$(cat ./version.json)',
+  //         'echo "::set-output name=matrix::{\\"version\\":\\"0.0.1\\"}"',
+  //         // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
+  //         // 'echo "::set-output name=version::${JSON}"',
+  //         ].join('\n'),
+  //     }
+  //   ],
+  // },
   publish_docker_hub: {
-    needs: 'get_version',
+    // needs: 'get_version',
     // 'name': 'Release to NPM',
     // 'needs': this.releaseWorkflowJobId,
     'runs-on': 'ubuntu-latest',
