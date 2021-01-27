@@ -45,7 +45,7 @@ project.releaseWorkflow.addJobs({
     'runs-on': 'ubuntu-latest',
     env: {
       CI: "true",
-      D_VERSION: '${{ needs.getversion.outputs.version }}',
+      // D_VERSION: '${{ needs.getversion.outputs.version }}',
     },
     // strategy: {
       // matrix: '${{fromJson(needs.getversion.outputs.matrix)}}',
@@ -86,7 +86,7 @@ project.releaseWorkflow.addJobs({
           push: true,
           // tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
           // tags: 'damadden88/influxdb-s3-backup:${{matrix.version}}'
-          tags: 'damadden88/influxdb-s3-backup:${D_VERSION}'
+          tags: 'damadden88/influxdb-s3-backup:${{ needs.getversion.outputs.version }}'
         }
       },
       // {
