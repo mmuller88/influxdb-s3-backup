@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.31](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.30...v0.0.31) (2021-01-27)
+
+
+### Features
+
+* use releaseworkflow for docker hub release ([3f27a1a](https://github.com/mmuller88/influxdb-s3-backup/commit/3f27a1a9fac587a0c1fa2070ea99a2605640b90d))
+* use releaseworkflow for docker hub release ([6a583a1](https://github.com/mmuller88/influxdb-s3-backup/commit/6a583a116ca512b3a07e4af7b09ebbf1929b3725))
+* use releaseworkflow for docker hub release ([83de5bf](https://github.com/mmuller88/influxdb-s3-backup/commit/83de5bfb08cd72472cc8bedf0263247d562cc7f1))
+* use releaseworkflow for docker hub release ([fa6e8ab](https://github.com/mmuller88/influxdb-s3-backup/commit/fa6e8abf2c763309f5e62f41bfbd84d53c53f5cb))
+* use releaseworkflow for docker hub release ([a34453d](https://github.com/mmuller88/influxdb-s3-backup/commit/a34453d50386938fa7ba24dc15b842c1b3e176da))
+* use releaseworkflow for docker hub release ([c31a20f](https://github.com/mmuller88/influxdb-s3-backup/commit/c31a20f8cfcf00fac7ece20b358add917cdd796c))
+* use releaseworkflow for docker hub release ([32ba2b2](https://github.com/mmuller88/influxdb-s3-backup/commit/32ba2b212d3b2d8242fdbae94a2bc7e9986ed720))
+* use releaseworkflow for docker hub release ([617faca](https://github.com/mmuller88/influxdb-s3-backup/commit/617facaeed4e1a096c42fbc899b677ee53d0b1cd))
+* use releaseworkflow for docker hub release ([e2a2adb](https://github.com/mmuller88/influxdb-s3-backup/commit/e2a2adb2cece790ba478c146ccb715c9eb9e76de))
+* use releaseworkflow for docker hub release ([bd1f460](https://github.com/mmuller88/influxdb-s3-backup/commit/bd1f4606dfb429a625120ed340ab253fa93b649c))
+
 ### [0.0.30](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.29...v0.0.30) (2021-01-26)
 
 
