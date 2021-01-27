@@ -29,7 +29,7 @@ project.releaseWorkflow.addJobs({
         name: 'set-matrix',
         run: [
           // 'JSON=$(cat ./version.json)',
-          'echo "::set-output name=matrix::{\"version\":\"0.0.1\"}"',
+          'echo "::set-output name=matrix::\{\"version\"\:\"0.0.1\"\}"',
           // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
           // 'echo "::set-output name=version::${JSON}"',
           ].join('\n'),
