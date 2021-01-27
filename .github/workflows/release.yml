@@ -49,7 +49,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: set-matrix
-        run: echo "::set-output name=matrix::{"version":"0.0.1"}"
+        run: echo "::set-output name=matrix::{\"version\":\"0.0.1\"}"
   publish_docker_hub:
     needs: get_version
     runs-on: ubuntu-latest
