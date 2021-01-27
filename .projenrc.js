@@ -45,7 +45,7 @@ project.releaseWorkflow.addJobs({
     'runs-on': 'ubuntu-latest',
     env: {
       CI: "true",
-      VERSION: '${{ needs.getversion.outputs.version }}',
+      //VERSION: '${{ needs.getversion.outputs.version }}',
     },
     // strategy: {
       // matrix: '${{fromJson(needs.getversion.outputs.matrix)}}',
