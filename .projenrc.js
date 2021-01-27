@@ -29,7 +29,8 @@ project.releaseWorkflow.addJobs({
         name: 'set-matrix',
         run: [
           // 'JSON=$(cat ./version.json)',
-          'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
+          // 'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
+          'echo "::set-output name=matrix::{\\"version\\":\\"0.0.2\\"}"',
           // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
           // 'echo "::set-output name=version::${JSON}"',
           ].join('\n'),
@@ -43,15 +44,16 @@ project.releaseWorkflow.addJobs({
     'runs-on': 'ubuntu-latest',
     env: {
       CI: "true",
+      VERSION: '${{fromJSON(needs.getversion.outputs.matrix)}}',
     },
-    strategy: {
+    // strategy: {
       // matrix: '${{fromJson(needs.getversion.outputs.matrix)}}',
-      matrix: '${{fromJSON(needs.getversion.outputs.matrix)}}',
+      // matrix: '${{fromJSON(needs.getversion.outputs.matrix)}}',
       // matrix: {
       //   version: ['0.0.1']
       // }
       // matrix: '${{fromJSON({\\"version\\"\\:\\"0.0.1\\"})}}',
-    },
+    // },
     'steps': [
       {
         name: 'Check out the repo',
@@ -82,7 +84,8 @@ project.releaseWorkflow.addJobs({
           platforms: 'linux/amd64,linux/arm64',
           push: true,
           // tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
-          tags: 'damadden88/influxdb-s3-backup:${{matrix.version}}'
+          // tags: 'damadden88/influxdb-s3-backup:${{matrix.version}}'
+          tags: 'damadden88/influxdb-s3-backup:${{env.VERSION}}'
         }
       },
       // {

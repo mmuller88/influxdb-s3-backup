@@ -49,14 +49,13 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: set-matrix
-        run: echo "::set-output name=matrix::{\"include\":[{\"version\":\"0.0.2\"}]}"
+        run: echo "::set-output name=matrix::{\"version\":\"0.0.2\"}"
   publish_docker_hub:
     needs: getversion
     runs-on: ubuntu-latest
     env:
       CI: "true"
-    strategy:
-      matrix: ${{fromJSON(needs.getversion.outputs.matrix)}}
+      VERSION: ${{fromJSON(needs.getversion.outputs.matrix)}}
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -76,4 +75,4 @@ jobs:
           file: ./Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: damadden88/influxdb-s3-backup:${{matrix.version}}
+          tags: damadden88/influxdb-s3-backup:${{env.VERSION}}
