@@ -8,46 +8,13 @@ const project = new NodeProject({
   projectType: ProjectType.LIB,
 });
 
-// const release =project.github.tasks.tryFind('release');
-// release.exec('hihi');
-
-// const versionJSON = require('./version.json')
-
 project.releaseWorkflow.addJobs({
-  // getversion: {
-  //   needs: 'build',
-  //   'runs-on': 'ubuntu-latest',
-  //   // outputs: { 
-  //   //   // matrix: '${{ steps.set-matrix.outputs.matrix }}'
-  //   //   version: '${{ steps.setversion.outputs.version }}'
-  //   //   // version: '0.0.3'
-  //   // },
-  //   'steps': [
-  //     // {
-  //     //   name: 'Check out the repo',
-  //     //   uses: 'actions/checkout@v2',
-  //     // },
-     
-  //   ],
-  // },
   publish_docker_hub: {
     needs: 'build',
-    // 'name': 'Release to NPM',
-    // 'needs': this.releaseWorkflowJobId,
     'runs-on': 'ubuntu-latest',
     env: {
       CI: "true",
-      // D_VERSION: "0.0.2",
-      // D_VERSION: '${{ needs.getversion.outputs.version }}',
     },
-    // strategy: {
-      // matrix: '${{fromJson(needs.getversion.outputs.matrix)}}',
-      // matrix: '${{fromJSON(needs.getversion.outputs.matrix)}}',
-      // matrix: {
-      //   version: ['0.0.1']
-      // }
-      // matrix: '${{fromJSON({\\"version\\"\\:\\"0.0.1\\"})}}',
-    // },
     'steps': [
       {
         name: 'Check out the repo',
@@ -70,15 +37,10 @@ project.releaseWorkflow.addJobs({
         }
       },
       {
-        id: 'setversion',
-        name: 'setversion',
+        name: 'get_version',
         run: [
-          // 'JSON=$(cat ./version.json)',
-          // 'echo "::set-output name=matrix::{\\"include\\":[{\\"version\\":\\"0.0.2\\"}]}"',
           'DVERSION=$(jq .version version.json -r)',
           'echo "::set-output name=dversion::$DVERSION"',
-          // 'echo "::set-output name=matrix::${JSON//\'%\'/\'%25\'}"',
-          // 'echo "::set-output name=version::${JSON}"',
           ].join('\n'),
       },
       {
@@ -89,91 +51,11 @@ project.releaseWorkflow.addJobs({
           file: './Dockerfile',
           platforms: 'linux/amd64,linux/arm64',
           push: true,
-          // tags: `damadden88/influxdb-s3-backup:${versionJSON.version}`
-          // tags: 'damadden88/influxdb-s3-backup:${{matrix.version}}'
-          tags: 'damadden88/influxdb-s3-backup:${{ steps.setversion.outputs.dversion }}'
-          // tags: 'damadden88/influxdb-s3-backup:${{ env.D_VERSION }}'
+          tags: 'damadden88/influxdb-s3-backup:${{ steps.get_version.outputs.dversion }}'
         }
       },
-      // {
-      //   name: 'Push to Docker Hub',
-      //   uses: 'docker/build-push-action@v2',
-      //   with: {
-      //     username: '${{ secrets.DOCKER_USERNAME }}',
-      //     password: '${{ secrets.DOCKER_PASSWORD }}',
-      //     repository: 'damadden88/influxdb-s3-backup',
-      //     tag_with_ref: true,
-      //   },
-      // },
     ],
   }
-})
-
-// const dockerPush = project.github.addWorkflow('push-docker');
-const dockerPush = project.github.addWorkflow('push-docker');
-
-// dockerPush.addJobs({
-//   publish_docker_hub: {
-//     // 'name': 'Release to NPM',
-//     // 'needs': this.releaseWorkflowJobId,
-//     'runs-on': 'ubuntu-latest',
-//     env: {
-//       CI: "true",
-//     },
-//     'steps': [
-//       {
-//         name: 'Check out the repo',
-//         uses: 'actions/checkout@v2',
-//       },
-//       {
-//         name: 'Set up QEMU',
-//         uses: 'docker/setup-qemu-action@v1',
-//       },
-//       {
-//         name: 'Set up Docker Buildx',
-//         uses: 'docker/setup-buildx-action@v1',
-//       },
-//       {
-//         name: 'Login to DockerHub',
-//         uses: 'docker/login-action@v1',
-//         with:{
-//           username: '${{ secrets.DOCKER_USERNAME }}',
-//           password: '${{ secrets.DOCKER_PASSWORD }}',
-//         }
-//       },
-//       {
-//         name: 'Build and push',
-//         uses: 'docker/build-push-action@v2',
-//         with: {
-//           context: '.',
-//           file: './Dockerfile',
-//           platforms: 'linux/amd64,linux/arm64',
-//           push: true,
-//           tags: 'damadden88/influxdb-s3-backup:latest'
-//         }
-//       },
-//       // {
-//       //   name: 'Push to Docker Hub',
-//       //   uses: 'docker/build-push-action@v2',
-//       //   with: {
-//       //     username: '${{ secrets.DOCKER_USERNAME }}',
-//       //     password: '${{ secrets.DOCKER_PASSWORD }}',
-//       //     repository: 'damadden88/influxdb-s3-backup',
-//       //     tag_with_ref: true,
-//       //   },
-//       // },
-//     ],
-//   }
-// })
-
-dockerPush.on({
-  push: {
-    tags: ['*'],
-  },
-  // release: {
-  //   types: ['published'],
-  // },
-  workflow_dispatch: {},
 })
 
 new DockerCompose(project, {
