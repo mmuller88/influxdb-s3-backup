@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.57](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.56...v0.0.57) (2021-01-31)
+
+
+### Bug Fixes
+
+* adjust REadme ([85bbc98](https://github.com/mmuller88/influxdb-s3-backup/commit/85bbc988d7e62c65ed922088220623cd21fadac4))
+
 ### [0.0.56](https://github.com/mmuller88/influxdb-s3-backup/compare/v0.0.55...v0.0.56) (2021-01-27)
 
 
