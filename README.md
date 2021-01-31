@@ -21,7 +21,7 @@ docker run \
     -e AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE \
     -e AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY \
     -e AWS_DEFAULT_REGION=us-west-2 \
-    jacobtomlinson/influxdb-to-s3:latest
+    damadden88/influxdb-to-s3:latest
 ```
 
 or if you just start your docker compose deployment
@@ -90,7 +90,7 @@ docker run \
     -e AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE \
     -e AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY \
     -e AWS_DEFAULT_REGION=us-west-2 \
-    jacobtomlinson/influxdb-to-s3:latest \
+    damadden88/influxdb-to-s3:latest \
     backup
 ```
 
@@ -130,3 +130,4 @@ docker run \
 # Thanks To:
 
 - Jacob Tomlinson https://github.com/jacobtomlinson/docker-influxdb-to-s3
+- And to the amazing [Projen Community](https://github.com/projen/projen)
